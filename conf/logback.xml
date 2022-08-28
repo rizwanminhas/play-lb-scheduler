@@ -1,0 +1,26 @@
+<configuration>
+
+    <conversionRule conversionWord="coloredLevel" converterClass="play.api.libs.logback.ColoredLevel"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{ISO8601} %coloredLevel %logger{15} - %message%n%xException{5}</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <!-- log levels -->
+    <logger name="play" level="ERROR"/>
+    <logger name="com.rminhas" level="INFO"/>
+    <logger name="akka" level="ERROR"/>
+    <logger name="access" level="ERROR"/>
+
+    <root level="ERROR">
+        <appender-ref ref="ASYNC"/>
+    </root>
+
+</configuration>
